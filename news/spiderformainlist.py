@@ -5,6 +5,7 @@ import http.cookiejar
 import http.cookies
 import re
 import os
+
 #from news.models import *
 
 #http://world.huanqiu.com/regions/2.html
@@ -35,7 +36,7 @@ class GetNewsList:
 		pattern = '.*'+self.keyword+'.*'
 		contents_list = []
 		for pageNumber in range(self.rangeNum):
-			listsoup = BeautifulSoup(self.getListPage(pageNumber+1),'html.parser')
+			listsoup = BeautifulSoup(self.getListPage(pageNumber+1),"html.parser")#lxml
 			tag_li = listsoup.find_all("li",class_="item")				
 			for tag in tag_li:
 				if re.match(pattern, tag.h3.a['title']):

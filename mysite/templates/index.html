@@ -153,10 +153,12 @@
 			 
 			 <div class="col-md-4 content-main-right">
 				 <div class="search">
-						 <h3>新闻搜索</h3>
+						<h3>新闻搜索</h3>
 						<form action="/result/" method="get">
-							<input type="text" value="" name="q"> <!-- onFocus="this.value=''" onBlur="this.value=''" --> 
+							<input type="text" value="" name="query"> <!-- onFocus="this.value=''" onBlur="this.value=''" --> 
 							<input type="submit" value="">
+							<input type="hidden" value="1" name="req_page">
+							<input type="hidden" value="0" name="cur_page">
 						</form>
 				 </div>
 				 <div class="categories">

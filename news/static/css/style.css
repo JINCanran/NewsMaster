@@ -162,7 +162,10 @@ font-family: 'Source Sans Pro', sans-serif;
 margin-bottom:1em;
 }
 .content-grid-info img,.content-sec-info img{
-width:100%;
+width:45%;
+height:60%;
+
+
 }
 .copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
 a.bttn{
@@ -173,6 +176,7 @@ text-decoration:none;
 font-size:1em;
 display:inline-block;
 margin-top:0.5em;
+margin-left:39em;
 }
 a.bttn:hover{
 color:#EB5A41;

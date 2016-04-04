@@ -6,6 +6,8 @@ from django.shortcuts import render_to_response
 from news.models import *
 from news.spiderformainlist import *
 from django.template import RequestContext
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 def index(request):
@@ -20,21 +22,33 @@ def logout(request):
 
 	
 def result(request):
-	if 'q' in request.GET and request.GET['q']:
-		q = request.GET['q']
-		spider = GetNewsList(q,2)
-		news_list = spider.selectTitle()
-		MainNewsList.objects.all().delete()
-		for news in news_list:
-			news1 = MainNewsList(title = news['title'],
-			url = news['url'],
-			abstract = news['abstract'],
-			mediaurl = news.get('mediaurl'),
-			date = news['date']
-			)	
-			news1.save()
+	if 'query' in request.GET and request.GET['query']:
+		query = request.GET['query']
+		cur_page = int(request.GET['cur_page'])
+		req_page = int(request.GET['req_page'])
+		if req_page < -1 :
+			req_page = cur_page+1
+		elif req_page < 0 :
+			req_page = cur_page-1
+		if cur_page == 0 :
+			spider = GetNewsList(query,3)
+			news_list = spider.selectTitle()
+			MainNewsList.objects.all().delete()
+			for news in news_list:
+				news1 = MainNewsList(title = news['title'],
+				url = news['url'],
+				abstract = news['abstract'],
+				mediaurl = news.get('mediaurl'),
+				date = news['date']
+				)	
+				news1.save()
+		news_list2 = MainNewsList.objects.all()
+		page = Paginator(news_list2, 5)		
+		news_page_list = page.page(req_page).object_list
+		page_range = page.page_range
+		num_pages = page.num_pages
 		return render_to_response('result.html',
-		{'news_list': news_list,'query': q})						
+		{'news_list' : news_page_list,'query': query,'page_range' : page_range,'num_pages' : num_pages,'cur_page' : req_page})						
 	else:
 		return HttpResponse('Please submit a search term.')
 		

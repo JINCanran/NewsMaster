@@ -103,12 +103,14 @@
 				 {% if forloop.counter|divisibleby:"2" %}
 				 <div class="content-grid-sec">
 					 <div class="content-sec-info">
-							 <h3><a href="{{news.url}}">{{news.title}}</a></h3>
-							 <h4>{{news.date}}</h4>
-							 <p>{{news.abstract}}</p>
-							 <img src="{{news.mediaurl}}" alt=""/>
-							 <a class="bttn" href="{{news.url}}">MORE</a>
-							 <h5>&nbsp </h5>
+						 <h3><a href="{{news.url}}">{{news.title}}</a></h3>
+						 <h4>{{news.date}}</h4>
+						 <p>{{news.abstract}}</p>
+						 {% if news.mediaurl%}
+						 <h5><img src="{{news.mediaurl}}" alt=""/></h5>
+						 {% endif%}
+						 <a class="bttn" href="{{news.url}}">MORE</a>
+						 <h5>&nbsp </h5>
 					 </div>
 				 </div>
 				 {% else %}
@@ -117,7 +119,9 @@
 						 <h3><a href="{{news.url}}">{{news.title}}</a></h3>
 						 <h4>{{news.date}}</h4>
 						 <p>{{news.abstract}}</p>
-						 <img src="{{news.mediaurl}}" alt=""/>
+						 {% if news.mediaurl%}
+						 <h5><img src="{{news.mediaurl}}" alt=""/></h5>
+						 {% endif%}
 						 <a class="bttn" href="{{news.url}}">MORE</a>
 					</div>
 				 </div>				 
@@ -126,24 +130,31 @@
 				 {% endif%}
 				 <div class="pages">
 					 <ul>
-						 <li class="active"><a href="#">1</a></li>
-						 <li><a href="#">2</a></li>
-						 <li><a href="#">3</a></li>
-						 <li><a href="#">4</a></li>
-						 <li><a href="#">5</a></li>
-						 <li><a href="#">6</a></li>
-						 <li><a href="#">Previous</a></li>
-						 <li><a href="#">Next</a></li>
+						 {% for num in page_range%}
+						 {% ifequal cur_page num%}
+						 <li class="active"><a href="#">{{num}}</a></li>
+						 {%else%}
+						 <li><a href="/result/?query={{query}}&&cur_page={{cur_page}}&&req_page={{num}}">{{num}}</a></li>
+						 {% endifequal%}						 
+						 {% endfor%}
+						 {% ifnotequal cur_page 1 %}  
+						 <li><a href="/result/?query={{query}}&&cur_page={{cur_page}}&&req_page=-1">上一页</a></li>
+						 {% endifnotequal%}
+						 {% ifnotequal cur_page num_pages %} 
+						 <li><a href="/result/?query={{query}}&&cur_page={{cur_page}}&&req_page=-2">下一页</a></li>
+						 {% endifnotequal%}
 					 </ul>
 				 </div>				 
 			 </div>
 			 
 			 <div class="col-md-4 content-main-right">
 				 <div class="search">
-						 <h3>新闻搜索</h3>
+						<h3>新闻搜索</h3>
 						<form action="/result/" method="get">
-							<input type="text" value="" name="q"> <!-- onFocus="this.value=''" onBlur="this.value=''" --> 
+							<input type="text" value="" name="query"> <!-- onFocus="this.value=''" onBlur="this.value=''" --> 
 							<input type="submit" value="">
+							<input type="hidden" value="1" name="req_page">
+							<input type="hidden" value="0" name="cur_page">
 						</form>
 				 </div>
 				 <div class="categories">
