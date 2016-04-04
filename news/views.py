@@ -4,7 +4,7 @@ from django.template.loader import get_template
 from django.template import Context
 from django.shortcuts import render_to_response
 from news.models import *
-from news.spiderforonepage import *
+from news.spiderformainlist import *
 from django.template import RequestContext
 
 # Create your views here.
@@ -19,19 +19,22 @@ def logout(request):
 	return response
 
 	
-def search_result(request):
+def result(request):
 	if 'q' in request.GET and request.GET['q']:
 		q = request.GET['q']
-		spiderForPage = SearchNews(q,1)
-		spiderForPage.saveUrl()
-		with open(q + ".txt", "r")  as f: 
-			for line in filter(None,f):
-				spiderForNews = SpiderForWorldNews(line)
-				spiderForNews.getInfo()
-			news = News.objects.filter(title__icontains=q)
-			return render_to_response('search_result.html',
-			{'news': news,'query': q})		
-				
+		spider = GetNewsList(q,2)
+		news_list = spider.selectTitle()
+		MainNewsList.objects.all().delete()
+		for news in news_list:
+			news1 = MainNewsList(title = news['title'],
+			url = news['url'],
+			abstract = news['abstract'],
+			mediaurl = news.get('mediaurl'),
+			date = news['date']
+			)	
+			news1.save()
+		return render_to_response('result.html',
+		{'news_list': news_list,'query': q})						
 	else:
 		return HttpResponse('Please submit a search term.')
 		

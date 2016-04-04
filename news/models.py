@@ -5,21 +5,31 @@ from django.db import models
 class User(models.Model):
 	name = models.CharField(max_length=30)
 	password = models.CharField(max_length=50)
-	email = models.CharField(max_length=100)
-	message = models.CharField(max_length=512)
-	interest = models.CharField(max_length=512)
+	email = models.CharField(max_length=100,null=True)
+	message = models.CharField(max_length=512,null=True)
+	interest = models.CharField(max_length=512,null=True)
 	
-class News(models.Model):
+class MainNewsList(models.Model):
 	title = models.CharField(max_length=100)
-	data = models.CharField(max_length=100)
-	author = models.CharField(max_length=100)
+	date = models.CharField(max_length=100)
 	abstract = models.CharField(max_length=10000)
-	link = models.CharField(max_length=1000)
-    
-class Detail(models.Model):
+	url = models.CharField(max_length=1000)
+	mediaurl = models.CharField(max_length=1000,null=True)
+	
+class DomesticNewsList(models.Model):
+	title = models.CharField(max_length=100)	
+	url = models.CharField(max_length=1000)
+	
+class InternationalNewsList(models.Model):
 	title = models.CharField(max_length=100)
-	data = models.CharField(max_length=100)
+	url = models.CharField(max_length=1000)
+
+    
+class NewsDetail(models.Model):
+	title = models.CharField(max_length=100)
+	date = models.CharField(max_length=100)
 	author = models.CharField(max_length=100)
+	source = models.CharField(max_length=100)
 	text = models.CharField(max_length=10000)
-	link = models.CharField(max_length=1000)
-	mediaurl = models.CharField(max_length=1000)
+	url = models.CharField(max_length=1000)
+	mediaurl = models.CharField(max_length=1000,null=True)	

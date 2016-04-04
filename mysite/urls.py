@@ -27,9 +27,8 @@ from news.views import *
 urlpatterns = [
     url(r'^$', hello),
 	url(r'^hello/$', hello),
-	url(r'^time/$', current_datetime),
 	url(r'^index/$', index),
-	url(r'^search_result/$', search_result),
+	url(r'^result/$', result),
 	url(r'^register/$', register),
 	url(r'^login/$', login),
 	url(r'^logout/$', logout),
