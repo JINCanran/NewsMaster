@@ -77,7 +77,7 @@
 			{% endfor %}
 			{% endif %}
 			  <form action="/login/" method="post">
-			  {% csrf_token %}
+			{% csrf_token %}
 				  
 						<input type="text"  name="username" placeholder="帐号*" value="{{username}}" required/>					
 						<input type="password"  name="password" placeholder="密码*" value="{{password}}" required/>		

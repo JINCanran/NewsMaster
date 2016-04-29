@@ -167,6 +167,7 @@ height:60%;
 
 
 }
+
 .copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
 a.bttn{
 color:#fff;
@@ -608,6 +609,7 @@ text-decoration: none;
 display: block;
 font-family: 'Oswald', sans-serif;
 }
+
 .content-grid-single span{
 color: #BBA198;
 line-height: 1.5em;
@@ -615,6 +617,9 @@ font-size: 0.95em;
 font-family: 'Source Sans Pro', sans-serif;
 margin-bottom: 1em;
 display:block;
+}
+.content-grid-single img{
+width:100%;
 }
 .content-grid-single p{
 color: #BBA198;

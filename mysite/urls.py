@@ -21,6 +21,7 @@ from news.views import index
 from django.conf import settings
 from django.conf.urls.static import static
 from news.views import *
+from django.views.decorators.cache import cache_page
 
 
 
@@ -32,6 +33,8 @@ urlpatterns = [
 	url(r'^register/$', register),
 	url(r'^login/$', login),
 	url(r'^logout/$', logout),
+	url(r'^details/$', details),
+	url(r'^addkey/$', addkey),
 
 
 ]

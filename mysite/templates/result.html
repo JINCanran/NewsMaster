@@ -72,10 +72,7 @@
 		 </div>
 		 <div class="banner-links">
 			 <ul>
-				 <li class="active"><a href="#">推荐</a></li>
-				 <li><a href="#">国内</a></li>
-				 <li><a href="#">日本</a></li>
-				 <li><a href="#">更多 …</a></li>
+				 <li><a href="/index/?cur_page=0&&req_page=1">回到首页</a></li>
 				  
 				 <div class="clearfix"></div>
 			 </ul>
@@ -103,31 +100,31 @@
 				 {% if forloop.counter|divisibleby:"2" %}
 				 <div class="content-grid-sec">
 					 <div class="content-sec-info">
-						 <h3><a href="{{news.url}}">{{news.title}}</a></h3>
+						 <h3><a href="/details/?url={{news.url}}&&cur_page=0&&req_page=1">{{news.title}}</a></h3>
 						 <h4>{{news.date}}</h4>
 						 <p>{{news.abstract}}</p>
 						 {% if news.mediaurl%}
 						 <h5><img src="{{news.mediaurl}}" alt=""/></h5>
 						 {% endif%}
-						 <a class="bttn" href="{{news.url}}">MORE</a>
+						 <a class="bttn" href="/details/?url={{news.url}}&&cur_page=0&&req_page=1">MORE</a>
 						 <h5>&nbsp </h5>
 					 </div>
 				 </div>
 				 {% else %}
 				 <div class="content-grid">
 					<div class="content-grid-info">
-						 <h3><a href="{{news.url}}">{{news.title}}</a></h3>
+						 <h3><a href="/details/?url={{news.url}}&&cur_page=0&&req_page=1">{{news.title}}</a></h3>
 						 <h4>{{news.date}}</h4>
 						 <p>{{news.abstract}}</p>
 						 {% if news.mediaurl%}
 						 <h5><img src="{{news.mediaurl}}" alt=""/></h5>
 						 {% endif%}
-						 <a class="bttn" href="{{news.url}}">MORE</a>
+						 <a class="bttn" href="/details/?url={{news.url}}&&cur_page=0&&req_page=1">MORE</a>
 					</div>
 				 </div>				 
 				 {% endif%}
 				 {% endfor%} 
-				 {% endif%}
+				 
 				 <div class="pages">
 					 <ul>
 						 {% for num in page_range%}
@@ -144,7 +141,8 @@
 						 <li><a href="/result/?query={{query}}&&cur_page={{cur_page}}&&req_page=-2">下一页</a></li>
 						 {% endifnotequal%}
 					 </ul>
-				 </div>				 
+				 </div>
+				{% endif%}				 
 			 </div>
 			 
 			 <div class="col-md-4 content-main-right">

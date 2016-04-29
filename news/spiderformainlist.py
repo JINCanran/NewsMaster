@@ -14,14 +14,15 @@ import os
 
 class GetNewsList:
 	#initial for special keyword and search range of pages
-	def __init__(self,keyword,rangeNum):
+	def __init__(self,keyword,rangeNum,url='http://world.huanqiu.com/regions/'):
 		self.keyword = keyword
 		self.rangeNum = rangeNum
+		self.url = url
 	#get the list page include title,url,image,date
 	def getListPage(self,pageNumber):
 		if pageNumber == 1:
 			pageNumber = 'index'
-		self.listurl = 'http://world.huanqiu.com/regions/'+str(pageNumber)+'.html'
+		self.listurl = self.url+str(pageNumber)+'.html'
 		try:
 			#print (self.listurl)
 			req = request.Request(self.listurl)
@@ -36,21 +37,16 @@ class GetNewsList:
 		pattern = '.*'+self.keyword+'.*'
 		contents_list = []
 		for pageNumber in range(self.rangeNum):
-			listsoup = BeautifulSoup(self.getListPage(pageNumber+1),"html.parser")#lxml
+			listsoup = BeautifulSoup(self.getListPage(pageNumber+1),"lxml")#lxml html.parser
 			tag_li = listsoup.find_all("li",class_="item")				
 			for tag in tag_li:
-				if re.match(pattern, tag.h3.a['title']):
-					# print(tag.a['title'])
-					# print(tag.a['href'])
-					# if(len(tag.a.contents) > 1):
-						# print(tag.a.img['src'])
-					# print(tag.h5.contents[0])
-					# print(tag.h6.contents[1])		
+				a = tag.a
+				if re.match(pattern, a['title']):	
 					contents ={}				
-					contents['url'] = tag.a['href']				
-					contents['title'] = tag.a['title']
-					if(tag.a.find('img') != None):			
-						contents['mediaurl'] = tag.a.img['src']
+					contents['url'] = a['href']				
+					contents['title'] = a['title']
+					if(a.find('img') != None):			
+						contents['mediaurl'] = a.img['src']
 					contents['abstract'] = tag.h5.contents[0]
 					contents['date'] = tag.h6.contents[1]
 					contents_list.append(contents)

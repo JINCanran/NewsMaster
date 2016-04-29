@@ -72,114 +72,61 @@
 		 </div>
 		 <div class="banner-links">
 			 <ul>
-				{% if query%}
-				<li><a href="?cur_page=0&&req_page=1">推荐</a></li>
-				{%else%}
-				<li class="active"><a href="#">推荐</a></li>
-				{% endif%}	
-				 
-				 {%if keys%}
-				 {%for key in keys%}
-				 {% ifequal key.key query%}
-				 <li class="active"><a href="#">{{key.key}}</a></li>
-				 {%else%}
-				 <li><a href="?query={{key.key}}&&cur_page=0&&req_page=1">{{key.key}}</a></li>
-				 {% endifequal%}
-				 {%endfor%}
-				 {%endif%}
-				 <li><a href="/addkey/">更多 …</a></li>
-				  
+				<li><a href="/index/?cur_page=0&&req_page=1">回到首页</a></li>				  
 				 <div class="clearfix"></div>
 			 </ul>
 		 </div>
 	 </div>
 </div>
 <!---//End-banner---->
-<div class="copyrights">Collect from <a>jincanran</a></div>
 <div class="content">
 	 <div class="container">
 		 <div class="content-grids">
 			 <div class="col-md-8 content-main">
 				 <div class="content-grid">
 					 <div class="content-grid-head">
-						 
-						 {% if query%}
-						 {% if news_list%}
-						 <h3> {{query}} </h3> 
-						 {% else %}
-						 <h3>抱歉! 没有找到关键词 {{query}} 的相关新闻</h3>
-						 {% endif%}
-						 {% else %}
-						 <h3>即时推荐</h3>
-						 {% endif%}
-						 
-						 <div class="clearfix"></div>
+					 {%if uks%}
+						 <h3>已有标签</h3>							 						 
+					 {%else%}
+						<h3>暂未添加标签</h3>							 
+					 {%endif%}
+						<div class="clearfix"></div>
 					 </div>
-				 </div>	 
-				 {% if news_list%}
-				 {% for news in news_list%}
-				 {% if forloop.counter|divisibleby:"2" %}
-				 <div class="content-grid-sec">
-					 <div class="content-sec-info">
-						 <h3><a href="/details/?url={{news.url}}&&cur_page=0&&req_page=1">{{news.title}}</a></h3>
-						 <h4>{{news.date}}</h4>
-						 <p>{{news.abstract}}</p>
-						 {% if news.mediaurl%}
-						 <h5><img src="{{news.mediaurl}}" alt=""/></h5>
-						 {% endif%}
-						 <a class="bttn" href="/details/?url={{news.url}}&&cur_page=0&&req_page=1">MORE</a>
-						 <h5>&nbsp </h5>
-					 </div>
-				 </div>
-				 {% else %}
+					 
+					 <div class="content-grid-single"> 					
+						 <div class="comments">
+							{%for uk in uks%}
+							 <div class="comment-grid">
+								 <div class="comment-info">
+								 <h4>{{uk.key}}&nbsp<a href="#">删除</a></h4>								  
+								 </div>
+								 <div class="clearfix"></div>
+							 </div>							 
+							 {% endfor %}				
+						</div>				
+					  </div>					 
+				 </div>	
 				 <div class="content-grid">
-					<div class="content-grid-info">
-						 <h3><a href="/details/?url={{news.url}}&&cur_page=0&&req_page=1">{{news.title}}</a></h3>
-						 <h4>{{news.date}}</h4>
-						 <p>{{news.abstract}}</p>
-						 {% if news.mediaurl%}
-						 <h5><img src="{{news.mediaurl}}" alt=""/></h5>
-						 {% endif%}
-						 <a class="bttn" href="/details/?url={{news.url}}&&cur_page=0&&req_page=1">MORE</a>
-					</div>
-				 </div>				 
-				 {% endif%}
-				 {% endfor%} 
-				 
-				 <div class="pages">
-					 <ul>
-						 {% if query%}
-						 {% for num in page_range%}
-						 {% ifequal cur_page num%}
-						 <li class="active"><a href="#">{{num}}</a></li>
-						 {%else%}
-						 <li><a href="?query={{query}}&&cur_page={{cur_page}}&&req_page={{num}}">{{num}}</a></li>
-						 {% endifequal%}						 
-						 {% endfor%}
-						 {% ifnotequal cur_page 1 %}  
-						 <li><a href="?query={{query}}&&cur_page={{cur_page}}&&req_page=-1">上一页</a></li>
-						 {% endifnotequal%}
-						 {% ifnotequal cur_page num_pages %} 
-						 <li><a href="?query={{query}}&&cur_page={{cur_page}}&&req_page=-2">下一页</a></li>
-						 {% endifnotequal%}
-						 {% else %}
-						 {% for num in page_range%}
-						 {% ifequal cur_page num%}
-						 <li class="active"><a href="#">{{num}}</a></li>
-						 {%else%}
-						 <li><a href="?cur_page={{cur_page}}&&req_page={{num}}">{{num}}</a></li>
-						 {% endifequal%}						 
-						 {% endfor%}
-						 {% ifnotequal cur_page 1 %}  
-						 <li><a href="?cur_page={{cur_page}}&&req_page=-1">上一页</a></li>
-						 {% endifnotequal%}
-						 {% ifnotequal cur_page num_pages %} 
-						 <li><a href="?cur_page={{cur_page}}&&req_page=-2">下一页</a></li>
-						 {% endifnotequal%}
-						 {% endif %}
-					 </ul>
-				 </div>
-				{% endif%}				 
+					 <div class="content-grid-head">
+						<h3>添加新标签</h3>							 
+						<div class="clearfix"></div>
+					 </div>
+					 
+					 <div class="content-grid-single"> 					
+						 <div class="content-form">
+							 <form action="" method="post">
+							 {% csrf_token %}				  
+							 <input type="text"  name="key" placeholder="自定义标签*" value="{{key}}" required/>					
+							 <input type="hidden"  name="username"  value="{{username}}" required/>
+							 {% if username %}
+							 <input type="submit" value="添加"/>
+							 {% else %}
+							 <a href="/login/">登录NewsMaster</a>	
+							 {% endif %}						
+							 </form>
+						 </div>			
+					  </div>					 
+				 </div>	
 			 </div>
 			 
 			 <div class="col-md-4 content-main-right">
@@ -193,16 +140,16 @@
 						</form>
 				 </div>
 				 <div class="categories">
-					 <h3>国内热点</h3>
-					 {% for news in chinalist %}
-					 <li class="active"><a href="/details/?url={{news.url}}&&cur_page=0&&req_page=1">{{news.title}}</a></li>
-					 {% endfor %}
+					 <h3>CATEGORIES</h3>
+					 <li class="active"><a href="#">Donec quis dui at dolor tempor</a></li>
+					 <li><a href="#">Vestibulum commodo felis quis tort</a></li>
+					 <li><a href="#">Fusce pellentesque suscipit</a></li>
 				 </div>
 				 <div class="archives">
-					 <h3>国际热点</h3>
-					 {% for news in worldlist %}
-					 <li class="active"><a href="/details/?url={{news.url}}&&cur_page=0&&req_page=1">{{news.title}}</a></li>
-					 {% endfor %}
+					 <h3>ARCHIVES</h3>
+					 <li class="active"><a href="#">July 2014</a></li>
+					 <li><a href="#">June 2014</a></li>
+					 <li><a href="#">May 2014</a></li>
 				 </div>
 			 </div>
 			 <div class="clearfix"></div>
