@@ -1,0 +1,171 @@
+Enter file contents hereEnter file contents here    1  sudo apt-get update
+    2  sudo apt-get install apt-transport-https ca-certificates
+    3  sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+    4  sudo vi /etc/apt/sources.list.d/docker.list
+    5  sudo apt-get update
+    6  sudo apt-get purge lxc-docker
+    7  $ apt-cache policy docker-engine
+    8  apt-cache policy docker-engine
+    9  sudo apt-get update
+   10  sudo apt-get install linux-image-extra-$(uname -r)
+   11  sudo apt-get install apparmor
+   12  sudo apt-get update
+   13  sudo apt-get -y install docker-engine=1.11.2-0~trusty
+   14  sudo service docker start
+   15  sudo docker --version
+   16  history
+
+
+
+
+1  sudo apt-get update
+    2  sudo apt-get install apt-transport-https ca-certificates
+    3  sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+    4  sudo vi /etc/apt/sources.list.d/docker.list
+    5  sudo apt-get update
+    6  sudo apt-get purge lxc-docker
+    7  $ apt-cache policy docker-engine
+    8  apt-cache policy docker-engine
+    9  sudo apt-get update
+   10  sudo apt-get install linux-image-extra-$(uname -r)
+   11  sudo apt-get install apparmor
+   12  sudo apt-get update
+   13  sudo apt-get -y install docker-engine=1.11.2-0~trusty
+   14  sudo service docker start
+   15  sudo docker --version
+   16  history
+   17  sudo docker run hello-world
+   18  sudo groupadd docker
+   19  sudo usermod -aG docker ubuntu
+   20  sudo su
+   21  sudo docker --version
+   22  docker-compose --version
+   23  bash setupPbft.sh
+   24  docker pull yeasy/hyperLedger:latest && docker tag yeasy/hyperledger:latest hyperledger/fabric-baseimage:latest
+   25  docker pull yeasy/hyperledger:latest && docker tag yeasy/hyperledger:latest hyperledger/fabric-baseimage:latest
+   26  sudo docker pull yeasy/hyperledger-peer:latest
+   27  sudo docker pull yeasy/hyperledger-membersrvc:latest
+   28  cd pbft
+   29  ls
+   30  cd ..
+   31  ls
+   32  cd ..
+   33  ls
+   34  cd ..
+   35  cd home/
+   36  cd ubuntu/
+   37  cd pbft; docker-compose up
+   38  whereis docker
+   39  cd ..
+   40  cd usr/
+   41  cd bin/
+   42  cd docker
+   43  cd ..
+   44  ls
+   45  cd var
+   46  cd lib
+   47  ls
+   48  cd docker
+   49  ls
+   50  sudo ls
+   51  sudo find . -name 'pbft'
+   52  cd ./aufs/diff/ea6bc2ab0be386c2c0035778c25026bf4643c14df86f47d7069be39a7fbb89ab/go/src/github.com/hyperledger/fabric/consensus/pbft
+   53  cd ./aufs/diff/ea6bc2ab0be386c2c0035778c25026bf4643c14df86f47d7069be39a7fbb89ab/go/src/github.com/hyperledger/fabric/consensus
+   54  sudo cd ./aufs/diff/ea6bc2ab0be386c2c0035778c25026bf4643c14df86f47d7069be39a7fbb89ab/go/src/github.com/hyperledger/fabric/consensus
+   55  cd ./aufs/diff/ea6bc2ab0be386c2c0035778c25026bf4643c14df86f47d7069be39a7fbb89ab/go/src/github.com/hyperledger/fabric/consensus
+   56  sudo cd ./aufs/diff/ea6bc2ab0be386c2c0035778c25026bf4643c14df86f47d7069be39a7fbb89ab/go/src/github.com/hyperledger/fabric/consensuscd aufs
+   57  cd aufs
+   58  sudo cd aufs
+   59  ls -l
+   60  cd ls -l
+   61  sudo ls -l
+   62  sudo pwd
+   63  sudo passwd
+   64  su root
+   65  docker pull yeasy/hyperledger-membersrvc:latest
+   66  cd ..
+   67  ls -l
+   68  cd docker
+   69  sudo chmod a+g aufs
+   70  ls -l
+   71  cd ls -l
+   72  sudo ls -l
+   73  sudo chmod a+rwx aufs
+   74  sudo ls -l
+   75  cd aufs
+   76  ls -s
+   77  ls -l
+   78  sudo chmod a+rwx diff
+   79  cd diff
+   80  ls -l
+   81  sudo chmod a+rwx ea6bc2ab0be386c2c0035778c25026bf4643c14df86f47d7069be39a7fbb89ab
+   82* cd ea6bc2ab0be386c2c0035778c25026bf4643c14df86f47d7069be39a7fbb89ab
+   83  sudo chmod a+rwx go
+   84  cd gocd
+   85  ls -l
+   86  cd src
+   87  cd github.com/
+   88  cd hyperledger/
+   89  cd fabric/
+   90  cd consensus/
+   91  cd pbft; docker-compose up
+   92  ls -l
+   93  wget -h
+   94  wget docker-compose-files/hyperledger/pbft/docker-compose.yml
+   95  wgethttps:// docker-compose-files/hyperledger/pbft/docker-compose.yml
+   96  wget https://raw.githubusercontent.com/yeasy/docker-compose-files/master/hyperledger/pbft/docker-compose.yml
+   97  ls -l
+   98  sudo wget https://raw.githubusercontent.com/yeasy/docker-compose-files/master/hyperledger/pbft/docker-compose.yml
+   99  ls
+  100  docker-compose up
+  101  sudo wget https://raw.githubusercontent.com/yeasy/docker-compose-files/master/hyperledger/pbft/peer-pbft.yml
+  102  sudo wget https://raw.githubusercontent.com/yeasy/docker-compose-files/master/hyperledger/pbft/docker-compose-with-membersrvc.yml
+  103  docker-compose up
+  104  history
+
+**ubuntu@test:/var/lib/docker/aufs/diff/ea6bc2ab0be386c2c0035778c25026bf4643c14df86f47d7069be39a7fbb89ab/go/src/github.com/hyperledger/fabric/consensus/pbft$ docker-compose -f docker-compose-with-membersrvc.yml up
+Starting pbft_membersrvc_1
+
+
+
+blockchain_guide/hyperledger/chaincode_example02.go
+blockchain_guide/hyperledger/chaincode_example02.go
+
+github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02
+fabric/examples/chaincode/go/chaincode_example02/chaincode_example02.go
+peer chaincode -p github.com/simple_contract_hyperledger/simple_contract_hyperledger.go -c '{args":["init","{}"]}'
+
+curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose
+
+diego: 1 DRJ23pEQl16a institution_a
+jim: 1 6avZQLwcUe9b bank_a
+binhn: 1 7avZQLwcUe9q institution_a
+
+
+0829  e3f63552a6c05571715259dfbe591c4fdb918491c40eca6d50602336c1641891a89a1009211a43f70ff8249a2548ac66a97149fa79e0e1deef3b9b34ab4bf4e1
+第一条  example02 5cbb88224e34d5c366603a5a9f7989f5a3eb02729fff85c19ce43db249ada678d5189e587d3ca88cf8b46b31b89cc9000aec9b9511877478ef70166dc6eaa7c0
+自己?条  55908c1ca42d2756100c6a00bd11aaa79e1db6fbff8f641597761c2d1bc85fb8bfbcfeb917e71a9d42c46be909cd5303fe0866a30ec9c65473561a906cf60241
+example03  42a5a8135100340d8f95c9681a9e6e0779c0c968a9b10ed175ac591c86c7be5356a1e818f12b425ec969a2f643bdccf307d6c8a3c9e94370b8719b90f8d3e8b7
+
+0901ex02 for node.js  8a1c4824a9ca66754b316d6b2ebf79c3819266e75482a69bd39ca3487210bece6aa82fe1ff0e2e71cc68d80654756cdc6f8165a56008d49f615e395df491eed0
+
+'{"Args":["init","{\"version\":\"1.0\"}"]}'
+\"assetID\":\"CON123\", \"location\":{\"latitude\":34, \"longitude\":23}, \"temperature\":89, \"carrier\":\"ABCCARRIER\"}"]}
+
+"{\"roomId\":\"jcrtest\",\"rent\":100,\"state\":"vacancy"}"
+
+
+CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS                              NAMES
+cd1184c77004        hyperledger/fabric-peer         "sh -c 'sleep 5; peer"   2 days ago          Up 4 minutes        0.0.0.0:7050-7052->7050-7052/tcp   pbft_vp0_1
+d28b4b84d469        hyperledger/fabric-membersrvc   "membersrvc"             2 days ago          Up 4 minutes        0.0.0.0:7054->7054/tcp             pbft_membersrvc_1
+
+docker cp <containerId>:/file/path/within/container /host/path/target
+docker cp d8f7c83ba660:/data/buzzMaster/spider.log .
+
+simple contract d0bbbbb2da2260dcfdca37445100ba7e5988ccbffeb35aa644a119d227ccb62f2fa8c4477ce253557e1e96b7f81813dd8bf71141e6e571ecb3f134ec19c2ea9a
+
+
+
+
+addroom    peer chaincode invoke -u jim -n 2b077db227afcc8e7fb1a7fbff17a433bb821588a410155267b8ee07818bde1352b9e8d5ae4904878e5577ab8b516e6ba33b740ab835a9408cf0940a725998eb -c '{"Function":"addRoom","Args":["{\"roomID\":\"jcrtest\",\"rent\":100,\"state\":\"vacancy\"}"]}'
+querybyid  peer chaincode query -u jim -n 2b077db227afcc8e7fb1a7fbff17a433bb821588a410155267b8ee07818bde1352b9e8d5ae4904878e5577ab8b516e6ba33b740ab835a9408cf0940a725998eb  -c '{"Function":"queryRoomById", "Args":["{\"roomID\":\"jcrtest\"}"]}'
